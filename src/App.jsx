@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addItem, removeItem, incrementQuantity, decrementQuantity } from "./store/cartSlice";
 import { decrement, increment, reset } from "./store/counter";
 import { closeModal, openModal } from "./store/modal";
 import { add, changeStatus, remove } from "./store/todo";
@@ -8,6 +9,7 @@ function App() {
   const counter = useSelector((state) => state.counter.value);
   const modal = useSelector((state) => state.modal.isOpen);
   const todos = useSelector((state) => state.todo.value);
+  const cart = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
   const [newTodo, setNewTodo] = useState("");
 
@@ -24,6 +26,22 @@ function App() {
       );
       setNewTodo("");
     }
+  };
+
+  const handleAddToCart = (product) => {
+    dispatch(addItem(product));
+  };
+
+  const handleRemoveFromCart = (id) => {
+    dispatch(removeItem(id));
+  };
+
+  const handleIncrementQuantity = (id) => {
+    dispatch(incrementQuantity(id));
+  };
+
+  const handleDecrementQuantity = (id) => {
+    dispatch(decrementQuantity(id));
   };
 
   return (
@@ -48,6 +66,61 @@ function App() {
             </button>
           </div>
         </div>
+      </section>
+
+      {/* Shopping Cart Section */}
+      <section className="mb-16 text-center bg-white p-8 rounded-lg shadow">
+        <h2 className="text-4xl font-semibold text-gray-800 mb-6">Shopping Cart</h2>
+        <div className="flex flex-wrap justify-center gap-6">
+          <button
+            onClick={() =>
+              handleAddToCart({ id: Date.now(), name: "Product 1", quantity: 1 })
+            }
+            className="px-6 py-3 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 transition"
+          >
+            Add Product 1
+          </button>
+          <button
+            onClick={() =>
+              handleAddToCart({ id: Date.now() + 1, name: "Product 2", quantity: 1 })
+            }
+            className="px-6 py-3 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 transition"
+          >
+            Add Product 2
+          </button>
+        </div>
+        <ul className="mt-6 space-y-4">
+          {cart.length > 0 &&
+            cart.map((item) => (
+              <li
+                key={item.id}
+                className="flex justify-between items-center p-5 rounded-lg border shadow-md bg-white"
+              >
+                <span className="font-medium">{item.name}</span>
+                <div className="flex gap-4 items-center">
+                  <button
+                    onClick={() => handleDecrementQuantity(item.id)}
+                    className="px-4 py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition"
+                  >
+                    -
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button
+                    onClick={() => handleIncrementQuantity(item.id)}
+                    className="px-4 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition"
+                  >
+                    +
+                  </button>
+                  <button
+                    onClick={() => handleRemoveFromCart(item.id)}
+                    className="px-4 py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </li>
+            ))}
+        </ul>
       </section>
 
       {/* Reset Button - Bottom Right */}

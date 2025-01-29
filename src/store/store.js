@@ -1,12 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
-import modal from "./modal";
-import counter from './counter';
-import todo from "./todo";
+import { configureStore } from '@reduxjs/toolkit';
+import counterReducer from './counter';
+import modalReducer from './modal';
+import todoReducer from './todo';
+import cartReducer from './cartSlice';
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    counter: counter,
-    modal: modal,
-    todo: todo,
+    counter: counterReducer,
+    modal: modalReducer,
+    todo: todoReducer,
+    cart: cartReducer, 
   },
 });
+
+export default store;
