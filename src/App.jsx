@@ -51,16 +51,16 @@ function App() {
         <h2 className="text-4xl font-semibold text-gray-800 mb-6">Counter</h2>
         <div className="flex flex-col items-center gap-6">
           <span className="text-5xl font-bold text-gray-900">{counter}</span>
-          <div className="flex gap-6">
+          <div className="flex flex-col items-center gap-6">
             <button
               onClick={() => dispatch(increment())}
-              className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition"
+              className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition"
             >
               Increase
             </button>
             <button
               onClick={() => dispatch(decrement())}
-              className="px-6 py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition"
+              className="px-8 py-4 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 transition"
             >
               Decrease
             </button>
@@ -76,7 +76,7 @@ function App() {
             onClick={() =>
               handleAddToCart({ id: Date.now(), name: "Product 1", quantity: 1 })
             }
-            className="px-6 py-3 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 transition"
+            className="px-8 py-4 bg-purple-600 text-white font-semibold rounded-xl hover:bg-purple-700 transition"
           >
             Add Product 1
           </button>
@@ -84,7 +84,7 @@ function App() {
             onClick={() =>
               handleAddToCart({ id: Date.now() + 1, name: "Product 2", quantity: 1 })
             }
-            className="px-6 py-3 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 transition"
+            className="px-8 py-4 bg-purple-600 text-white font-semibold rounded-xl hover:bg-purple-700 transition"
           >
             Add Product 2
           </button>
@@ -100,20 +100,20 @@ function App() {
                 <div className="flex gap-4 items-center">
                   <button
                     onClick={() => handleDecrementQuantity(item.id)}
-                    className="px-4 py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition"
+                    className="px-4 py-2 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 transition"
                   >
                     -
                   </button>
                   <span>{item.quantity}</span>
                   <button
                     onClick={() => handleIncrementQuantity(item.id)}
-                    className="px-4 py-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition"
+                    className="px-4 py-2 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition"
                   >
                     +
                   </button>
                   <button
                     onClick={() => handleRemoveFromCart(item.id)}
-                    className="px-4 py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition"
+                    className="px-4 py-2 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 transition"
                   >
                     Remove
                   </button>
@@ -126,7 +126,7 @@ function App() {
       {/* Reset Button - Bottom Right */}
       <button
         onClick={() => dispatch(reset())}
-        className="fixed bottom-6 right-6 px-6 py-3 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 transition shadow-lg"
+        className="fixed bottom-6 right-6 px-8 py-4 bg-gray-700 text-white font-semibold rounded-xl hover:bg-gray-800 transition shadow-lg"
       >
         Reset Counter
       </button>
@@ -136,7 +136,7 @@ function App() {
         <h2 className="text-4xl font-semibold text-gray-800 mb-6">Modal</h2>
         <button
           onClick={toggleModal}
-          className="px-6 py-3 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition"
+          className="px-8 py-4 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition"
         >
           Toggle Modal
         </button>
@@ -146,7 +146,7 @@ function App() {
               <h2 className="text-2xl font-medium text-gray-800">This is a modal</h2>
               <button
                 onClick={toggleModal}
-                className="mt-4 w-full px-4 py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition"
+                className="mt-4 w-full px-6 py-3 bg-red-500 text-white font-semibold rounded-xl hover:bg-red-600 transition"
               >
                 Close Modal
               </button>
@@ -166,11 +166,11 @@ function App() {
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
             placeholder="Add a new task..."
-            className="flex-1 px-5 py-3 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="flex-1 px-5 py-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <button
             onClick={handleAddTodo}
-            className="ml-4 px-6 py-3 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 transition"
+            className="ml-4 px-8 py-4 bg-purple-600 text-white font-semibold rounded-xl hover:bg-purple-700 transition"
           >
             Add Task
           </button>
@@ -188,7 +188,7 @@ function App() {
                 <div className="flex gap-4">
                   <button
                     onClick={() => dispatch(changeStatus(todo.id))}
-                    className={`px-4 py-2 rounded-md font-semibold ${
+                    className={`px-6 py-3 rounded-xl font-semibold ${
                       todo.completed
                         ? "bg-gray-500 text-white"
                         : "bg-green-600 text-white"
@@ -198,7 +198,7 @@ function App() {
                   </button>
                   <button
                     onClick={() => dispatch(remove(todo.id))}
-                    className="px-4 py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition"
+                    className="px-6 py-3 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 transition"
                   >
                     Delete
                   </button>
